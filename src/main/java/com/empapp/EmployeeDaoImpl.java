@@ -9,7 +9,6 @@ public class EmployeeDaoImpl implements EmployeeDaoIntrf{
         con = DBConnection.createDBConnection();
         String query = "insert into employee values(?,?,?,?)";
         try{
-
             // PreparedStatement - it is a dynamic query
             // for our goal need dynamic query
             PreparedStatement pstm = con.prepareStatement(query);
@@ -17,6 +16,25 @@ public class EmployeeDaoImpl implements EmployeeDaoIntrf{
             pstm.setString(2, employee.getName());
             pstm.setDouble(3, employee.getSalary());
             pstm.setInt(4, employee.getAge());
+            int cnt = pstm.executeUpdate();
+            if (cnt != 0)
+                System.out.println("Employee insert successfully!");
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    @Override
+    public void createEmployeeWithoutId(Employee employee) {
+        con = DBConnection.createDBConnection();
+        String query = "insert into employee (name, salary, age) values(?,?,?)";
+        try{
+            // PreparedStatement - it is a dynamic query
+            // for our goal need dynamic query
+            PreparedStatement pstm = con.prepareStatement(query);
+            pstm.setString(1, employee.getName());
+            pstm.setDouble(2, employee.getSalary());
+            pstm.setInt(3, employee.getAge());
             int cnt = pstm.executeUpdate();
             if (cnt != 0)
                 System.out.println("Employee insert successfully!");

@@ -3,6 +3,7 @@ package com.empapp;
 public interface EmployeeDaoIntrf {
     //create employee
     public void createEmployee(Employee employee);
+    public void createEmployeeWithoutId(Employee employee);
     //show all employee
     public void showAllEmployee();
     //show employee based on id
